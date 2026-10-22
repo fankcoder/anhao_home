@@ -6,16 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "sync:articles": "node scripts/sync-articles.mjs",
+    "test": "node --test src/reader/markdown.test.js",
     "preview": "vite preview"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "autoprefixer": "latest",
+    "github-slugger": "^2.0.0",
     "lucide-react": "latest",
+    "mdast-util-to-string": "^4.0.0",
+    "mermaid": "^12.2.0",
     "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^3.4.17",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0",
     "vite": "latest"
   }
 }

@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         home: fileURLToPath(new URL('./index.html', import.meta.url)),
         friends: fileURLToPath(new URL('./friends/index.html', import.meta.url)),
+        blog: fileURLToPath(new URL('./blog/index.html', import.meta.url)),
       },
     },
   },

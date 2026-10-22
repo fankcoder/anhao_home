@@ -1,0 +1,21 @@
+{
+  "repository": "fankcoder/ai_agent_learn_share",
+  "revision": "6261bf9667dcad7ce7fcc4f34ae63d5c49717914",
+  "syncedAt": "2026-10-22T08:18:03.737Z",
+  "files": [
+    "001三段式提示词.md",
+    "002结构化输出.md",
+    "003流式输出.md",
+    "004deepseekharness源码解读.md",
+    "README.md",
+    "deepseek-harness/agent-lifecycle.zh.md",
+    "deepseek-harness/architecture.zh.md",
+    "deepseek-harness/capability-seams.zh.md",
+    "deepseek-harness/config-catalog.zh.md",
+    "deepseek-harness/defensive-patterns.zh.md",
+    "deepseek-harness/event-producer-consumer.zh.md",
+    "deepseek-harness/source-architecture.zh.md",
+    "deepseek-harness/subsystems/README.zh.md",
+    "deepseek-harness/tool-execution-pipeline.zh.md"
+  ]
+}

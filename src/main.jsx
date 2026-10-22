@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import {
   ArrowLeft, ArrowUpRight, ChevronDown, ExternalLink, Globe2, Mail, Menu, MoveUpRight, X,
 } from 'lucide-react'
 import './styles.css'
+import { articles } from './articles'
+
+const BlogPage = lazy(() => import('./reader/BlogPage'))
 
 const projects = [
   { number: '01', started: '2026-08-05', title: 'EchoLine', subtitle: '用对话，重新理解学习。', description: '本地 AI 英语学习播放器，支持精听、影子跟读、生词复习与学习进度管理。', tags: ['AI Voice', 'Education'], href: 'https://anhao.net/learn/', color: 'peach' },
@@ -11,13 +14,6 @@ const projects = [
   { number: '03', started: '2026-08-19', title: 'Debate', subtitle: '让观点在碰撞中生长。', description: 'AI 驱动的结构化辩论实验，让不同观点在多轮对话中碰撞并形成判断。', tags: ['Agents', 'Research'], href: '/debate/', color: 'lavender' },
   { number: '04', started: '2026-04-10', title: 'Email Quote Automation', subtitle: '让询盘自动变成报价。', description: '自动读取询盘邮件、翻译内容、提取需求，并根据价格规则生成中英文报价回复。', tags: ['Python', 'Automation'], href: 'https://github.com/fankcoder/email-quote-automation', color: 'peach' },
   { number: '05', started: '2023-05-23', title: 'AI Chat App', subtitle: '把 AI 对话装进手机。', description: '已上架 App Store 的 iOS AI 聊天应用示例，探索上下文管理与实时对话体验。', tags: ['iOS', 'WebSocket'], href: 'https://github.com/fankcoder/ai_chat_app', color: 'mint' },
-]
-
-const articles = [
-  { date: '001', read: '5 min', title: '三段式提示词', excerpt: '从任务、约束到输出格式，建立更稳定、更容易复用的提示词结构。', category: 'PROMPTING', href: 'https://github.com/fankcoder/ai_agent_learn_share/blob/main/001三段式提示词.md' },
-  { date: '002', read: '6 min', title: '结构化输出', excerpt: '用 Pydantic、JSON Schema 和接口层校验，让模型结果可以被程序可靠消费。', category: 'BUILDING', href: 'https://github.com/fankcoder/ai_agent_learn_share/blob/main/002结构化输出.md' },
-  { date: '003', read: '11 min', title: '流式输出', excerpt: '从模型分片到前后端实时传输，拆解流式交互的工程实现。', category: 'ENGINEERING', href: 'https://github.com/fankcoder/ai_agent_learn_share/blob/main/003流式输出.md' },
-  { date: '004', read: '20 min', title: 'DeepSeek Harness 源码解读', excerpt: '从插件组合、Agent 循环、会话日志到工具流水线，理解一个 Agent Harness 的内部结构。', category: 'AGENT SYSTEMS', href: 'https://github.com/fankcoder/ai_agent_learn_share/blob/main/004deepseekharness源码解读.md' },
 ]
 
 const milestones = [
@@ -560,7 +556,7 @@ function ReferenceApp() {
 
           <div className="writing-index">
             <section aria-labelledby="projects-heading"><h2 id="projects-heading">Projects</h2><ul className="notes-list">{visibleProjects.map(project => <li key={project.title}><a href={project.href} target={project.href.startsWith('http') ? '_blank' : undefined} rel="noreferrer"><span className="project-list-copy"><strong>{project.title}</strong><small>{project.description}</small></span><time>{project.started}</time></a></li>)}</ul><a href="https://github.com/fankcoder" target="_blank" rel="noreferrer" className="more-link">More projects <ArrowUpRight size={13}/></a></section>
-            <section aria-labelledby="blogs-heading"><h2 id="blogs-heading">Blogs</h2><div className="blogs-list">{articles.map(article => <a className="blog-row" href={article.href} target="_blank" rel="noreferrer" key={article.title}><span>{article.title}</span><time>{article.date}</time></a>)}</div></section>
+            <section aria-labelledby="blogs-heading"><h2 id="blogs-heading"><a href="/blog/">Blogs</a></h2><div className="blogs-list">{articles.map(article => <a className="blog-row" href={article.href} key={article.title}><span>{article.title}</span><time>{article.date}</time></a>)}</div></section>
             <section aria-labelledby="friends-home-heading"><h2 id="friends-home-heading"><a className="friends-home-link" href="/friends/">友链 <ArrowUpRight size={14} aria-hidden="true"/></a></h2><p className="friends-home-copy">欢迎互换友链，认识更多热爱技术与分享的朋友。</p></section>
           </div>
 
@@ -574,4 +570,7 @@ function ReferenceApp() {
 }
 
 const isFriendsPage = /^\/friends(?:\/|$)/.test(window.location.pathname)
-createRoot(document.getElementById('root')).render(isFriendsPage ? <FriendsPage /> : <ReferenceApp />)
+const isBlogPage = /^\/blog(?:\/|$)/.test(window.location.pathname)
+createRoot(document.getElementById('root')).render(isBlogPage
+  ? <Suspense fallback={<main className="reference-shell" role="status">正在加载文章…</main>}><BlogPage /></Suspense>
+  : isFriendsPage ? <FriendsPage /> : <ReferenceApp />)
