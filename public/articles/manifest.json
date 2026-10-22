@@ -1,12 +1,13 @@
 {
   "repository": "fankcoder/ai_agent_learn_share",
-  "revision": "6261bf9667dcad7ce7fcc4f34ae63d5c49717914",
-  "syncedAt": "2026-10-22T08:18:03.737Z",
+  "revision": "e0d7bf64ffffe5200856be4586c59d94cdb30c42",
+  "syncedAt": "2026-10-22T08:55:55.731Z",
   "files": [
     "001三段式提示词.md",
     "002结构化输出.md",
     "003流式输出.md",
     "004deepseekharness源码解读.md",
+    "005Harness沙箱原理与实践.md",
     "README.md",
     "deepseek-harness/agent-lifecycle.zh.md",
     "deepseek-harness/architecture.zh.md",

@@ -10,6 +10,7 @@
 | 002 | [结构化输出](./002结构化输出.md) | Pydantic、JSON Schema 与接口层校验 |
 | 003 | [流式输出](./003流式输出.md) | 从模型分片到前后端实时传输的工程实现 |
 | 004 | [DeepSeek Harness 源码解读](./004deepseekharness源码解读.md) | 插件组合、Agent 循环、会话日志、工具流水线与能力替换 |
+| 005 | [Harness 沙箱原理与实践](./005Harness沙箱原理与实践.md) | 从 Codex CLI 理解执行权限，对比系统沙箱、容器、gVisor、microVM 与 WASM |
 
 ## 内容方向
 
